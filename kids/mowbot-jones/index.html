@@ -89,6 +89,20 @@ body {
 	text-align: center;
 	z-index: 1;
 }
+		
+			#start-gate {
+				position: absolute; inset: 0; display: flex; align-items: center;
+				justify-content: center; flex-direction: column; gap: 18px;
+				background: #061a26; color: #eef3cf; cursor: pointer; z-index: 10;
+				font-family: 'Trebuchet MS', system-ui, sans-serif; text-align: center;
+			}
+			#start-gate h1 { font-size: 30px; margin: 0; letter-spacing: 0.06em; color: #ffe36d; }
+			#start-gate p  { margin: 0; font-size: 15px; color: #9fb3ab; }
+			#start-gate .key {
+				border: 2px solid #62e2a6; color: #62e2a6; padding: 10px 26px;
+				border-radius: 4px; font-size: 17px; letter-spacing: 0.08em;
+			}
+			#start-gate:focus-visible { outline: 3px solid #62e2a6; outline-offset: -6px; }
 		</style>
 		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
 <link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
@@ -103,6 +117,12 @@ body {
 			Your browser does not support JavaScript.
 		</noscript>
 
+		<div id="start-gate" role="button" tabindex="0" aria-label="Click to start the game">
+			<h1>MOWBOT JONES</h1>
+			<p>FAIRWAY FRENZY</p>
+			<div class="key">CLICK TO PLAY</div>
+			<p style="font-size:13px">Browsers keep audio muted until you interact &mdash; this unlocks the sound.</p>
+		</div>
 		<div id="status">
 			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="index.png" alt="">
 			<progress id="status-progress"></progress>
@@ -198,8 +218,17 @@ const engine = new Engine(GODOT_CONFIG);
 			displayFailureNotice(missingMsg + missing.join('\n'));
 		}
 	} else {
-		setStatusMode('progress');
-		engine.startGame({
+		// Boot only after a real user gesture. Without one the browser suspends the
+		// audio context, and every sound in the game stays silent until the player
+		// happens to click something — including the studio sting, which is over
+		// by then.
+		const startGate = document.getElementById('start-gate');
+		function boot() {
+			if (startGate) {
+				startGate.remove();
+			}
+			setStatusMode('progress');
+			engine.startGame({
 			'onProgress': function (current, total) {
 				if (current > 0 && total > 0) {
 					statusProgress.value = current;
@@ -209,12 +238,25 @@ const engine = new Engine(GODOT_CONFIG);
 					statusProgress.removeAttribute('max');
 				}
 			},
-		}).then(() => {
-			setStatusMode('hidden');
-		}, displayFailureNotice);
+			}).then(() => {
+				setStatusMode('hidden');
+			}, displayFailureNotice);
+		}
+		if (startGate) {
+			startGate.addEventListener('click', boot, { once: true });
+			startGate.addEventListener('keydown', function (e) {
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					boot();
+				}
+			}, { once: true });
+		} else {
+			boot();
+		}
 	}
 }());
 		</script>
 	</body>
 </html>
+
 
