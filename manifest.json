@@ -22,7 +22,7 @@
   {
    "slug": "rampart-studio",
    "title": "RampArt Studio",
-   "blurb": "a videogame pixel-art asset creator — blocks are your clay. Build assets out of blocks, carve and paint them yours, export to Godot, Unity, Tiled and beyond — right in your browser.",
+   "blurb": "a videogame pixel-art asset creator. Blocks are your clay: build assets out of blocks, carve and paint them yours, and export to Godot, Unity, Tiled and beyond, right in your browser.",
    "thumb": "thumbs/rampart-studio.png",
    "year": 2026,
    "pinned": true

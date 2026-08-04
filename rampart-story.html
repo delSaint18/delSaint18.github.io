@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RampArt Studio: a Saint Park case study</title>
+<meta name="description" content="How RampArt Studio was made: one file, 9,200 lines, 465 automated checks, and the working 3D engine that was deleted to protect it.">
+<!-- og: tags — link unfurls in chat apps. -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://delsaint18.github.io/rampart-story.html">
+<meta property="og:title" content="RampArt Studio: a Saint Park case study">
+<meta property="og:description" content="The most important feature is one I deleted: a working 3D engine.">
+<meta property="og:image" content="https://delsaint18.github.io/story/00-final.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lora:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("sp-theme")||"day")}catch(e){}</script>
+<style>
+/* story-page extras — tokens only, no new colors */
+.story{max-width:760px; margin:0 auto}
+.story p{margin:0 0 14px}
+.story .lead{font-size:20px; line-height:1.5}
+.story .hook{font-family:var(--font-display); font-weight:400; font-size:clamp(22px,4vw,30px); line-height:1.2; margin:26px 0 8px}
+.stats{display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 6px; padding:0; list-style:none}
+.stats li{
+  font-family:var(--font-ui); font-weight:700; font-size:12.5px; letter-spacing:.04em;
+  border:var(--bd-2); border-radius:6px; padding:6px 10px; background:var(--paper);
+  box-shadow:3px 3px 0 var(--shadow-color);
+}
+.story figure{margin:26px 0; border:var(--bd); border-radius:8px; overflow:hidden; background:var(--paper); box-shadow:6px 6px 0 var(--shadow-color)}
+.story figure img{display:block; width:100%; height:auto; image-rendering:auto}
+.story figcaption{font-family:var(--font-ui); font-size:13px; padding:10px 14px; border-top:var(--bd-2)}
+.story h2.label{margin-top:40px}
+.cta-row{display:flex; gap:14px; flex-wrap:wrap; margin:30px 0 8px}
+</style>
+</head>
+<body>
+
+<div id="tvstatic" aria-hidden="true"></div>
+<div id="tvroll" aria-hidden="true"></div>
+<div class="ripple" aria-hidden="true"></div>
+
+<div class="topnav">
+  <div class="bar">
+    <a class="mark" href="./" aria-label="SAINTPARK home"><span class="saint">SAINT</span><span class="park">PARK</span></a>
+    <nav aria-label="Site">
+      <a href="./">The Park</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="kids/">Play</a>
+      <a href="about.html">About</a>
+      <a href="#" id="theme-toggle" title="Toggle day / night">☾ Night</a>
+      <a class="book" data-booking href="mailto:delsaintprod@gmail.com?subject=Saint%20Park%20commission">Book a piece</a>
+    </nav>
+  </div>
+</div>
+
+<svg class="cloud c1" data-px="-1" viewBox="0 0 100 60" aria-hidden="true"><path d="M18 60a14 14 0 0 1-4-27 16 16 0 0 1 28-12 15 15 0 0 1 26 3 13 13 0 0 1 14 21 12 12 0 0 1-10 15z"/></svg>
+<svg class="cloud c2" data-px="1" viewBox="0 0 100 60" aria-hidden="true"><path d="M18 60a14 14 0 0 1-4-27 16 16 0 0 1 28-12 15 15 0 0 1 26 3 13 13 0 0 1 14 21 12 12 0 0 1-10 15z"/></svg>
+
+<header class="page-head wrap">
+  <h1><span class="lite">RAMPART</span> STUDIO</h1>
+  <p class="sub">a case study, and the 3,648 lines deleted to protect it</p>
+</header>
+
+<div class="hill" style="margin-top:34px">
+  <svg class="crest" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path class="fill" d="M0 120 L0 90 Q 360 0 780 55 Q 1140 100 1440 40 L1440 120 Z"/>
+    <path class="line" d="M0 90 Q 360 0 780 55 Q 1140 100 1440 40"/>
+  </svg>
+  <div class="hill-body">
+    <main class="wrap story">
+
+      <!-- ============ FIRST SCREEN: the result ============ -->
+      <p class="lead"><strong>RampArt Studio</strong> is a videogame pixel-art world builder that
+      runs from a single HTML file. Drag parametric blocks that autotile themselves; recolor an
+      entire world by dragging one palette swatch; draw on top with real pixel tools; export to
+      PNG, sprite sheets, Tiled, Godot, or Unity. No install, no network, no account. Open the file and build.</p>
+
+      <ul class="stats">
+        <li>ONE FILE · ~9,200 LINES</li>
+        <li>465-CHECK SMOKE SUITE</li>
+        <li>532 BROWSER ASSERTS</li>
+        <li>ZERO DEPENDENCIES</li>
+        <li>MIT · FREE &amp; PUBLIC</li>
+      </ul>
+
+      <div class="cta-row">
+        <a class="btn" href="https://delsaint18.github.io/rampart-studio/">Open RampArt Studio →</a>
+        <a class="btn" href="https://github.com/delSaint18/rampart-studio">Read the source →</a>
+      </div>
+
+      <p class="hook">The most important feature is one I deleted:<br>a working 3D engine.</p>
+
+      <figure>
+        <img src="story/00-final.png" alt="RampArt Studio: a finished isometric pixel-art scene in the night skin, with kit thumbnails and the framed export card">
+        <figcaption>The three-minute bar: a first-time visitor should have something worth keeping before their coffee cools.</figcaption>
+      </figure>
+
+      <!-- ============ THE PROBLEM ============ -->
+      <h2 class="label"><span>The problem</span></h2>
+      <p>RampArt solved a simple problem for me: creating isometric art is hard. It was built to
+      be an accessible on-ramp: a way in for creators who want to try a new style.</p>
+
+      <!-- ============ DECISION ONE ============ -->
+      <h2 class="label"><span>Decision one: the engine I deleted</span></h2>
+      <p>Midway through the build, I started on a 3D engine that could make assets with the same tile-based workflow, inspired by things like Octopath Traveler and Crocotile3D. And it
+      worked: 3,648 lines of custom WebGL, a voxel ambient-occlusion mesher, a palette-LUT shader,
+      a DDA picker. It passed its verification gates.</p>
+      <p>Then I realized the tool was losing the spirit of what I'd designed. The simple editor
+      had become a bloated, awkward mix of mesh creator and level editor. Deleting it brought back
+      the original simple, expressive design the tool was capable of.</p>
+      <p>The engine wasn't wasted, either. It was archived, audited, and its best ideas became TilePark 3D, a separate tool with its own promise.</p>
+
+      <!-- ============ DECISION TWO ============ -->
+      <h2 class="label"><span>Decision two: the painter's palette</span></h2>
+      <p>Every Saint Park tool holds one standard: a first click that produces a usable result,
+      with the deep knobs one layer down. In RampArt that standard is structural: blocks are
+      parametric recipes rasterized per style profile, and the whole world's color is indexed to
+      one palette.</p>
+      <p>I wanted this tool to feel intuitive and interactive. You don't menu-dive when you
+      splash paint on a canvas. The same should apply to your creative software. Everything is a
+      mouse click away, with the deeper tools hidden just underneath.</p>
+
+      <figure>
+        <img src="story/09-live-palette-recolor-magenta.png" alt="Dragging one palette swatch to magenta live-recolors every block in the scene">
+        <figcaption>One swatch, whole world: color is indexed, so a palette drag repaints everything, live.</figcaption>
+      </figure>
+      <figure>
+        <img src="story/10-autotile.png" alt="Blocks autotiling into a connected structure as they are placed on the grid">
+        <figcaption>Blocks are recipes, not stamps: place them and they resolve their own edges.</figcaption>
+      </figure>
+      <figure>
+        <img src="story/19-kits.png" alt="Assembled kits panel showing ready-made block collections">
+        <figcaption>The first click is a kit, not an empty grid. The deep knobs wait one layer down.</figcaption>
+      </figure>
+
+      <!-- ============ DECISION THREE ============ -->
+      <h2 class="label"><span>Decision three: spec first, gates always</span></h2>
+      <p>RampArt was built entirely in Claude Code. I designed the tool and directed the agents
+      every step of the way: I started by writing a detailed spec, gave it to the AI team,
+      directed them through it, and supervised all changes. "Done" was an unacceptable word until
+      I had a functioning and usable product.</p>
+      <p>The receipts: nothing shipped until a 465-check smoke suite and a 532-assert real-browser
+      run came back green, and the engineering ledger records the unfixed nits as honestly as the
+      wins.</p>
+
+      <figure>
+        <img src="story/20-engines-export.png" alt="The export card offering PNG, sprite sheet, Tiled, Godot, and Unity outputs with plain-language descriptions">
+        <figcaption>Exports speak plain language: every row says what the file is for, because the spec says a stranger has to understand it.</figcaption>
+      </figure>
+
+      <!-- ============ WHAT'S NEXT ============ -->
+      <h2 class="label"><span>What's next</span></h2>
+      <p>In my next builds I'll be factoring in a more structured workflow, along with a build HQ.
+      And to keep brand identity and feature parity across projects, I've already implemented a Brain: a master context that new AI instances read to catch up before they touch anything.</p>
+
+      <div class="cta-row">
+        <a class="btn" href="https://delsaint18.github.io/rampart-studio/">Open RampArt Studio →</a>
+      </div>
+      <p><em>RampArt Studio is free and public under the MIT License. Open it and build.</em></p>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <nav class="foot-nav" aria-label="Footer">
+      <a href="./">The Park</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="kids/">Play</a>
+      <a href="about.html">About</a>
+    </nav>
+    <nav class="webring" id="webring" aria-label="Webring navigation" hidden>
+      <a id="ring-prev" href="#" rel="prev">← prev</a>
+      <span class="tag">webring</span>
+      <a id="ring-rand" href="#">random</a>
+      <span class="tag">·</span>
+      <a id="ring-next" href="#" rel="next">next →</a>
+    </nav>
+    <p class="fine" id="footer-line">SAINTPARK · a delSaint practice · every piece is a song</p>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
