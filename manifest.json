@@ -1,13 +1,31 @@
 {
-  "artist": "delSaint",
-  "tagline": "where the artists go to play",
-  "bio": "delSaint creates these digital snapshots and music visualizers to remember a better time. This park is meant as a place for artists to meet and create. Welcome to the park.",
-  "pitch": "Give your music a unique look, something to remember.",
-  "email": "delsaintprod@gmail.com",
-  "links": [
-    { "label": "SoundCloud", "url": "https://soundcloud.com/delsaintx" },
-    { "label": "Instagram", "url": "https://instagram.com/delnosabe" },
-    { "label": "Email", "url": "mailto:delsaintprod@gmail.com" }
-  ],
-  "pieces": []
+ "artist": "delSaint",
+ "tagline": "where the artists go to play",
+ "bio": "delSaint creates these digital snapshots and music visualizers to remember a better time. This park is meant as a place for artists to meet and create. Welcome to the park.",
+ "pitch": "Give your music a unique look, something to remember.",
+ "email": "delsaintprod@gmail.com",
+ "links": [
+  {
+   "label": "SoundCloud",
+   "url": "https://soundcloud.com/delsaintx"
+  },
+  {
+   "label": "Instagram",
+   "url": "https://instagram.com/delnosabe"
+  },
+  {
+   "label": "Email",
+   "url": "mailto:delsaintprod@gmail.com"
+  }
+ ],
+ "pieces": [
+  {
+   "slug": "rampart-studio",
+   "title": "RampArt Studio",
+   "blurb": "a videogame pixel-art asset creator — blocks are your clay. Build assets out of blocks, carve and paint them yours, export to Godot, Unity, Tiled and beyond — right in your browser.",
+   "thumb": "thumbs/rampart-studio.png",
+   "year": 2026,
+   "pinned": true
+  }
+ ]
 }
